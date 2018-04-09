@@ -132,7 +132,7 @@ public class ImageUtils {
         // 原图位置, 输出图片位置, 水印文字颜色, 水印文字  
         // new MarkText4J().mark("eguidMarkText2.jpg", "eguidMarkText2.jpg", "水印效果测试", font, Color.ORANGE, 0, 14);
         // 增加图片水印
-        new ImageUtils().mark("D:\\image\\image_bg.jpg", "D:\\image\\logo.png", "D:\\image\\out_file.png", 80, 80, 200, 200);
+        new ImageUtils().mark("D:\\0image\\first.jpg", "D:\\0image\\water1.png", "D:\\0image\\out_file7.png", 80, 80, 200, 200);
     } 
 }
 
