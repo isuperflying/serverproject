@@ -19,7 +19,7 @@ public class ImageUtils {
 		g.drawImage(img, 0, 0, bufImg.getWidth(), bufImg.getHeight(), null);
 		g.setColor(color);
 		g.setFont(font);
-		g.rotate(Math.toRadians(135), x, y);
+		g.rotate(Math.toRadians(45), x, y);
 		g.drawString(text, x, y);
 		g.dispose();
 	}
@@ -63,7 +63,7 @@ public class ImageUtils {
 			int imgWidth = img.getWidth(null);
 			int imgHeight = img.getHeight(null);
 			// ¼ÓË®Ó¡
-			BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
+			BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_4BYTE_ABGR);
 			mark(bufImg, img, text, font, color, x, y);
 			// Êä³öÍ¼Æ¬
 			FileOutputStream outImgStream = new FileOutputStream(outImgPath);
