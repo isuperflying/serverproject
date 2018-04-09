@@ -19,6 +19,7 @@ public class ImageUtils {
 		g.drawImage(img, 0, 0, bufImg.getWidth(), bufImg.getHeight(), null);
 		g.setColor(color);
 		g.setFont(font);
+		g.rotate(Math.toRadians(135), x, y);
 		g.drawString(text, x, y);
 		g.dispose();
 	}

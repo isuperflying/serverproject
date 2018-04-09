@@ -1,6 +1,7 @@
 package com.ant.image.util;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,12 +30,13 @@ public class SImageUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
-		addWater();
+		//addWater();
+		addTextWater();
 	}
 
 	public static void addWater() {
 		try {
-			BufferedImage watermarkImage = ImageIO.read(new FileInputStream("d:\\0image\\water1.png"));
+			BufferedImage watermarkImage = ImageIO.read(new FileInputStream("d:\\image\\logo.png"));
 			WatermarkParameter watermark = new WatermarkParameter().addWaterMarkImage(watermarkImage).rotate(20f);
 					// .rotate(20f).opacity(0.2f);
 			// 网络获取图片进行相应的图片处理 水印 缩放 或者剪切，旋转
@@ -44,16 +46,19 @@ public class SImageUtils {
 			// 获取数据流
 			InputStream is = uri.getInputStream();
 
-			SimpleImageTool.of("d:\\0image\\first.jpg").size(600, 600).watermark(watermark)
+			SimpleImageTool.of("d:\\image\\image_bg.jpg").size(600, 600).watermark(watermark)
 					// .watermark(watermark2)
-					.toFile(new File("d:\\0image\\out_file6.png"));
+					.toFile(new File("d:\\image\\out_file2.png"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
 
 	
-	
+	public static void addTextWater(){
+		ImageUtils im = new ImageUtils();
+		im.mark("d:\\image\\image_bg.jpg", "d:\\image\\out_file3.jpg", "测试", new Font("隶书",Font.BOLD,50), Color.blue, 100, 100);
+	}
 	
 	
 	
