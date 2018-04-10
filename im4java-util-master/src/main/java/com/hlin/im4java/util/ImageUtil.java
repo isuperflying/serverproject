@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 
 import org.im4java.core.CompositeCmd;
 import org.im4java.core.ConvertCmd;
+import org.im4java.core.GMOperation;
 import org.im4java.core.IMOperation;
 import org.im4java.core.IdentifyCmd;
 import org.im4java.core.ImageCommand;
@@ -50,7 +51,7 @@ public class ImageUtil {
     /**
      * 水印图片路径
      */
-    private static String watermarkImagePath = "d:\\image\\logo.png";
+    private static String watermarkImagePath = "d:\\0image\\water1.png";
 
     /**
      * 水印图片
@@ -149,9 +150,9 @@ public class ImageUtil {
      */
     public static void addTextWatermark(String srcImagePath, String destImagePath, String content)
             throws Exception {
-        IMOperation op = new IMOperation();
-        op.rotate(30d);
-        op.font("微软雅黑");
+    	GMOperation op = new GMOperation();
+        //op.rotate(30d);
+        op.font("c:\\fonts\\simhei.ttf");
         // 文字方位-东南
         op.gravity("southeast");
         // 文字信息

@@ -1,9 +1,11 @@
 package com.ant.image.util;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,21 +16,27 @@ import javax.imageio.ImageIO;
 public class ImageUtils {
 
 	// 加文字水印
-	public void mark(BufferedImage bufImg, Image img, String text, Font font, Color color, int x, int y) {
+	public static void markText(BufferedImage bufImg, Image img, String text, Font font, Color color, int x, int y,int angle) {
 		Graphics2D g = bufImg.createGraphics();
+		//去锯齿效果
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_DEFAULT);
+		
 		g.drawImage(img, 0, 0, bufImg.getWidth(), bufImg.getHeight(), null);
 		g.setColor(color);
 		g.setFont(font);
-		g.rotate(Math.toRadians(45), x, y);
+		g.rotate(Math.toRadians(angle), x, y);
 		g.drawString(text, x, y);
 		g.dispose();
 	}
 
 	// 加图片水印
-	public void mark(BufferedImage bufImg, Image img, Image markImg, int width, int height, int x, int y) {
+	public static void markImage(BufferedImage bufImg, Image img, Image markImg, int width, int height, int x, int y,float alpha) {
 		Graphics2D g = bufImg.createGraphics();
 		g.drawImage(img, 0, 0, bufImg.getWidth(), bufImg.getHeight(), null);
 		g.drawImage(markImg, x, y, width, height, null);
+		//透明度
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP,alpha));
 		g.dispose();
 	}
 
@@ -49,7 +57,7 @@ public class ImageUtils {
 	 * @param y
 	 *            -文字位于当前图片的竖坐标
 	 */
-	public void mark(String imgPath, String outImgPath, String text, Font font, Color color, int x, int y) {
+	public static void markTextWater(String imgPath, String outImgPath, String text, Font font, Color color, int x, int y,int angle) {
 		try {
 			// 读取原图片信息
 			File imgFile = null;
@@ -63,8 +71,8 @@ public class ImageUtils {
 			int imgWidth = img.getWidth(null);
 			int imgHeight = img.getHeight(null);
 			// 加水印
-			BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_4BYTE_ABGR);
-			mark(bufImg, img, text, font, color, x, y);
+			BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
+			markText(bufImg, img, text, font, color, x, y,angle);
 			// 输出图片
 			FileOutputStream outImgStream = new FileOutputStream(outImgPath);
 			ImageIO.write(bufImg, "png", outImgStream);
@@ -93,7 +101,7 @@ public class ImageUtils {
 	 * @param y
 	 *            -纵坐标，同上
 	 */
-	public void mark(String inputImg, String markImg, String outputImg, int width, int height, int x, int y) {
+	public static void markImageWater(String inputImg, String markImg, String outputImg, int width, int height, int x, int y,float alpha) {
 		// 读取原图片信息
 		File inputImgFile = null;
 		File markImgFile = null;
@@ -117,9 +125,9 @@ public class ImageUtils {
 			int imgWidth = img.getWidth(null);
 			int imgHeight = img.getHeight(null);
 			BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
-			mark(bufImg, img, mark, width, height, x, y);
+			markImage(bufImg, img, mark, width, height, x, y,alpha);
 			FileOutputStream outImgStream = new FileOutputStream(outputImg);
-			ImageIO.write(bufImg, "jpg", outImgStream);
+			ImageIO.write(bufImg, "png", outImgStream);
 			outImgStream.flush();
 			outImgStream.close();
 			System.out.println("水印图片制作完成--->");
@@ -128,13 +136,6 @@ public class ImageUtils {
 		}
 	}
 	
-	public static void main(String[] args) {
-        Font font = new Font("宋体", Font.PLAIN, 14);  
-        // 原图位置, 输出图片位置, 水印文字颜色, 水印文字  
-        // new MarkText4J().mark("eguidMarkText2.jpg", "eguidMarkText2.jpg", "水印效果测试", font, Color.ORANGE, 0, 14);
-        // 增加图片水印
-        new ImageUtils().mark("D:\\0image\\first.jpg", "D:\\0image\\water1.png", "D:\\0image\\out_file7.png", 80, 80, 200, 200);
-    } 
 }
 
 

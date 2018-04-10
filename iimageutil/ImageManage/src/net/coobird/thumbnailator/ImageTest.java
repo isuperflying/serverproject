@@ -8,8 +8,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.sun.xml.internal.ws.api.addressing.WSEndpointReference.Metadata;
-
 import net.coobird.thumbnailator.Thumbnails.Builder;
 import net.coobird.thumbnailator.filters.Caption;
 import net.coobird.thumbnailator.geometry.Coordinate;
@@ -57,8 +55,8 @@ public class ImageTest {
 			File file = new File("d:\\0image\\\\first.jpg");
 			BufferedImage bufferedImage = ImageIO.read(file);
 			// Set up the caption properties
-			String caption = "RASCUNHO";
-			Font font = new Font("Monospaced", Font.PLAIN, 100);
+			String caption = "¶º±È";
+			Font font = new Font("Monospaced", Font.PLAIN, 50);
 			Color c = Color.BLACK;
 			float opacity = 1f;
 			Position[] positions = { Positions.TOP_LEFT, Positions.CENTER, Positions.BOTTOM_RIGHT };
@@ -69,9 +67,7 @@ public class ImageTest {
 					.size(bufferedImage.getHeight(), bufferedImage.getWidth())
 					.outputFormat("png");
 			Caption cc = new Caption(caption, font, c, opacity, Positions.TOP_LEFT, insetPixels);
-			
 			builder.addFilter(cc);
-
 			BufferedImage result;
 
 			result = builder.asBufferedImage();
