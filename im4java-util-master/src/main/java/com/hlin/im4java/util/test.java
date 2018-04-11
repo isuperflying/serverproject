@@ -25,12 +25,12 @@ public class test {
 
 		try {
 
-			String src = "D://0image//1.jpg"; // 需要加水印的源图片
+			String src = "D://0image//2.jpg"; // 需要加水印的源图片
 			String desc = "D://0image//desc.jpg"; // 生成的水印图片的路径
 			String water = "D://0image//water_temp.png"; // 用中文转换成的背景透明的png图片
-			String fontType = "C:\\fonts\\mnjcy.TTF"; // 指定字体文件为宋体
-			String colorStr = "000000"; // 颜色
-			int fontSize = 18;
+			String fontType = "C:\\fonts\\sfzsj.TTF"; // 指定字体文件为宋体
+			String colorStr = "939393"; // 颜色
+			int fontSize = 16;
 
 			Watermark watermark = new Watermark();
 
@@ -49,7 +49,7 @@ public class test {
 			 * 
 			 * @throws Exception
 			 */
-			watermark.converFontToImage("腾牛装逼神器", fontType, fontSize, colorStr, water);
+			watermark.converFontToImage("小可爱", fontType, fontSize, colorStr, water);
 
 			/*
 			 * 把文字的png图片贴在原图上，生成水印
@@ -68,7 +68,7 @@ public class test {
 			 * 
 			 * @param alpha 透明度
 			 */
-			watermark.WatermarkImg(src, desc, water, 1, 600, 200, 100);
+			watermark.WatermarkImg(src, desc, water, 1, 290, 200, 200);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

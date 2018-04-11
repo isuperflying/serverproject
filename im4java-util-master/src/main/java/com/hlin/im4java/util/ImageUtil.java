@@ -36,7 +36,7 @@ public class ImageUtil {
     /**
      * 是否使用 GraphicsMagick
      */
-    private static final boolean USE_GRAPHICS_MAGICK_PATH = true;
+    private static final boolean USE_GRAPHICS_MAGICK_PATH = false;
 
     /**
      * ImageMagick安装路径
@@ -152,19 +152,51 @@ public class ImageUtil {
             throws Exception {
     	GMOperation op = new GMOperation();
         //op.rotate(30d);
-        op.font("c:\\fonts\\simhei.ttf");
+        op.font("c:\\fonts\\sfzsj.TTF");
         // 文字方位-东南
-        op.gravity("southeast");
+        //op.gravity("southeast");
         // 文字信息
-        op.pointsize(18).fill("#ff5555").draw("text 10,10 " + content);
+        op.pointsize(18).fill("#ff5555").draw("rotate 20 text 100,100 " + content);
         // 原图
         op.addImage(srcImagePath);
         // 目标
         op.addImage(createDirectory(destImagePath));
         ImageCommand cmd = getImageCommand(CommandType.convert);
+        System.out.println("cmds---" + op.getCmdArgs());
         cmd.run(op);
     }
-
+    
+    /**
+     * 一个图片上添加多组文字
+     * 
+     * @param srcImagePath 源图片路径
+     * @param destImagePath 目标图片路径
+     * @param content 文字内容（不支持汉字）
+     * @throws Exception
+     */
+    public static void addTextWatermark(String srcImagePath, String destImagePath, List<Object[]> list)
+            throws Exception {
+    	GMOperation op = new GMOperation();
+    	
+        for(int i=0;i<list.size();i++) {
+        	Object[] params = list.get(i);
+        	// 文字信息
+        	op.font(params[0].toString());
+            op.pointsize(Integer.parseInt(params[1].toString()))
+            .fill(params[2].toString())
+            .draw("rotate "+Integer.parseInt(params[3].toString())+" text "+ params[4] +"," +params[7] + "'"+params[9]+"'");//此处的中文文字一定要带单引号
+        }
+        
+        // 原图
+        op.addImage(srcImagePath);
+        // 目标
+        op.addImage(createDirectory(destImagePath));
+        ImageCommand cmd = getImageCommand(CommandType.convert);
+        System.out.println("cmds---" + op.getCmdArgs());
+        cmd.run(op);
+    }
+    
+    
     /**
      * 图片水印
      * 

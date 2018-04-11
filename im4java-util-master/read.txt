@@ -1,0 +1,38 @@
+Microsoft Windows [版本 6.1.7601]
+版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 40 -draw
+"text 10,50 '文字'" d:\0image\2.jpg d:\0image\22.jpg
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 20 -draw
+"text 10,50 '文字'" d:\0image\2.jpg d:\0image\22.jpg
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 20 -rotat
+e 20  -draw "text 10,50 '文字'" d:\0image\2.jpg d:\0image\22.jpg
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 20 -draw
+"text 10,50 文字" d:\0image\2.jpg d:\0image\22.jpg
+convert: non-conforming drawing primitive definition `? @ error/draw.c/DrawImage
+/3401.
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 20 -rotat
+e 20  -draw "text 10,50 '文字'" d:\0image\2.jpg d:\0image\22.jpg
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 20 -draw
+"text 10,50 '文字'" -rotate -10 d:\0image\2.jpg d:\0image\22.jpg
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 20 -draw
+"text 10,50 '文字'" label:'手动阀' -rotate -10 d:\0image\2.jpg d:\0image\22.jpg
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 20 -draw
+("text 10,50 '文字'" -rotate -10) d:\0image\2.jpg d:\0image\22.jpg
+convert: non-conforming drawing primitive definition `(' @ error/draw.c/DrawImag
+e/3401.
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 20 -draw
+"rotate -15 text 10,50 '文字'" d:\0image\2.jpg d:\0image\22.jpg
+
+C:\Users\super>convert -font C:\fonts\sfzsj.TTF -fill green -pointsize 20 -draw
+"rotate 15 text 10,50 '文字'" d:\0image\2.jpg d:\0image\22.jpg
+
+C:\Users\super>
